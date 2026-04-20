@@ -1,62 +1,118 @@
+Ese diseño actual es el que viene por defecto y se ve muy simple. Para HypeStudio, necesitamos algo que grite "Minecraft" y "Profesionalismo". Vamos a darle una estética de Error 404 inspirada en el menú del juego (botones oscuros, fondos de piedra o degradados profundos) y que sea totalmente responsivo.
+
+He mejorado el código usando Flexbox (en lugar de table-cell) y le añadí un botón de "Respawn" para que el usuario regrese a la página principal.
+
+🎨 Página 404 Estilo HypeStudio
+HTML
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
-  <title>Page Not Found</title>
+  <title>404 | HypeStudio - Error de Conexión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    * {
-      line-height: 1.2;
-      margin: 0;
+    :root {
+      --primary: #5865F2; /* Color Blurple tipo Discord */
+      --accent: #ffcc00;  /* Oro tipo Minecraft */
+      --bg: #0f0f0f;
+      --text: #ffffff;
     }
 
-    html {
-      color: #888;
-      display: table;
-      font-family: sans-serif;
-      height: 100%;
-      text-align: center;
-      width: 100%;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      display: table-cell;
-      vertical-align: middle;
-      margin: 2em auto;
+      background-color: var(--bg);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://www.transparenttextures.com/patterns/dark-matter.png'); /* Efecto sutil */
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
     }
 
     h1 {
-      color: #555;
-      font-size: 2em;
-      font-weight: 400;
+      font-size: 8rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      color: var(--accent);
     }
 
     p {
-      margin: 0 auto;
-      width: 280px;
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 30px;
+      line-height: 1.6;
     }
 
-    @media only screen and (max-width: 280px) {
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-transform: uppercase;
+    }
 
-      body,
-      p {
-        width: 95%;
-      }
+    .btn:hover {
+      background: transparent;
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+    }
 
-      h1 {
-        font-size: 1.5em;
-        margin: 0 0 0.3em;
-      }
+    /* Animación simple de "flotado" */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
 
+    .logo-anim {
+      animation: float 4s ease-in-out infinite;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 
 <body>
-  <h1>Page Not Found</h1>
-  <p>Sorry, but the page you were trying to view does not exist.</p>
+  <div class="container">
+    <div class="logo-anim">🚀</div>
+    <h1>404</h1>
+    <h2>¡Has caído fuera del mapa!</h2>
+    <p>
+      Parece que la página que buscas ha sido eliminada por un Creeper o nunca existió en este servidor.
+    </p>
+    <a href="/" class="btn">Volver al Lobby (Inicio)</a>
+  </div>
 </body>
 
 </html>
-<!-- IE needs 512+ bytes: https://docs.microsoft.com/archive/blogs/ieinternals/friendly-http-error-pages -->
